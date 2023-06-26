@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchPlayerById, deletePuppyById } from "../API";
+import { fetchSinglePlayer, removePlayer } from "../API";
 import { useParams, useNavigate } from "react-router-dom";
 
 function SinglePlayer() {
@@ -9,11 +9,11 @@ function SinglePlayer() {
   const [player, setPlayer] = useState({});
 
   useEffect(() => {
-    async function getSinglePlayer() {
-      const player = await fetchPlayerById(id);
-      setPlayer(player);
+    async function fetchPlayer() {
+      const fetchedPlayer = await fetchSinglePlayer(id);
+      setPlayer(fetchedPlayer);
     }
-    getSinglePlayer();
+    fetchPlayer();
   }, []);
 
   console.log(player);
@@ -24,7 +24,7 @@ function SinglePlayer() {
       <h4>{player.name}</h4>
       <button
         onClick={async () => {
-          await deletePuppyById(player.id);
+          await removePlayer(player.id);
           navigate(`/`);
         }}
       >

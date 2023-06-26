@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchAllPlayers } from "./API";
+import { fetchAllPlayers } from "../API/index";
+import { useNavigate } from "react-router-dom";
 
 function AllPlayers() {
   const navigate = useNavigate();
@@ -8,18 +9,22 @@ function AllPlayers() {
 
   useEffect(() => {
     async function getAllPlayers() {
-      const players = await fetchAllPlayers();
-      setPlayers(players);
+      const fetchedPlayers = await fetchAllPlayers();
+      setPlayers(fetchedPlayers);
     }
     getAllPlayers();
   }, []);
+
+  if (!players || players.length === 0) {
+    return <div>No players found.</div>;
+  }
 
   return (
     <div>
       <h4>Players:</h4>
       {players.map((player) => {
         return (
-          <div>
+          <div key={player.id}>
             <img
               style={{
                 height: "200px",

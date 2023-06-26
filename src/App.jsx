@@ -1,14 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import AllPlayers from "./components/AllPlayers";
-import CreatePuppyForm from "./components/CreatePuppyForm";
-import Nav from "./components/Nav.jsx";
-import SinglePlayer from "./components/SinglePlayer";
+import "./index.css"
+import Nav from "./componets/Nav";
+import AllPlayers from "./componets/AllPlayers"
+import SinglePlayer from "./componets/SinglePlayer"
+import CreatePuppyForm from "./componets/CreatePuppyForm"
+
 
 function App() {
   return (
     <div className="App">
-      <Nav />
+      <Nav/>
       <Routes>
         <Route path="/" element={<AllPlayers />} />
         <Route path="/players/:id" element={<SinglePlayer />} />

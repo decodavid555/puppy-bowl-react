@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 function Nav() {
-  const Nav = Nav
   return (
     <div
       style={{
